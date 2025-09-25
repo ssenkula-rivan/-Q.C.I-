@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality & Container Inspection LTD (Q.C.I)</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0066cc;
+            --dark-blue: #004499;
+            --light-blue: #3399ff;
+            --accent-color: #00aaff;
+            --text-dark: #2c3e50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        .navbar {
+            background: var(--primary-blue) !important;
+            padding: 0.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--accent-color) !important;
+        }
+
+        .dropdown-menu {
+            background: white;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .dropdown-item:hover {
+            background: var(--light-blue);
+            color: white;
+        }
+
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .carousel-item {
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .carousel-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 102, 204, 0.6);
+            z-index: 1;
+        }
+
+        .carousel-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .btn-primary-custom {
+            background: var(--accent-color);
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .btn-primary-custom:hover {
+            background: var(--dark-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--accent-color);
+            margin: 1rem auto;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .about-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 80px 0;
+        }
+
+        .stats-section {
+            background: var(--primary-blue);
+            color: white;
+            padding: 60px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .contact-section {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            margin-right: 1rem;
+            width: 30px;
+        }
+
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        .member-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background: var(--light-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .carousel-indicators {
+            bottom: 30px;
+        }
+
+        .carousel-indicators button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .navbar-nav {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="fas fa-shipping-fast me-2"></i>Q.C.I
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown">
+                            About
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#about">Company Overview</a></li>
+                            <li><a class="dropdown-item" href="#team">Our Team</a></li>
+                            <li><a class="dropdown-item" href="#policies">Policies</a></li>
+                            <li><a class="dropdown-item" href="#terms">Terms & Conditions</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#services">Marine Surveying</a></li>
+                            <li><a class="dropdown-item" href="#services">Vessel Cargo</a></li>
+                            <li><a class="dropdown-item" href="#services">Stock Management</a></li>
+                            <li><a class="dropdown-item" href="#services">Audits & Inspections</a></li>
+                            <li><a class="dropdown-item" href="#services">Sampling & Analysis</a></li>
+                            <li><a class="dropdown-item" href="#services">Fumigation & Pest Control</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#careers">Careers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#reports">Research Reports</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Carousel -->
+    <section id="home" class="hero-section">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
+                    <div class="carousel-content">
+                        <div class="container">
+                            <h1 class="hero-title">Quality & Container Inspection LTD</h1>
+                            <p class="hero-subtitle">Third-party Quality Analysis & Inspection Services</p>
+                            <a href="#services" class="btn btn-primary-custom">Discover Our Services</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
+                    <div class="carousel-content">
+                        <div class="container">
+                            <h1 class="hero-title">Coffee & Agricultural Commodities</h1>
+                            <p class="hero-subtitle">Specialized in Coffee, Cocoa, Maize, Rice, Sorghum & Beans Analysis</p>
+                            <a href="#services" class="btn btn-primary-custom">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
+                    <div class="carousel-content">
+                        <div class="container">
+                            <h1 class="hero-title">Container Inspection Services</h1>
+                            <p class="hero-subtitle">Professional Container Inspection & Stock Management</p>
+                            <a href="#contact" class="btn btn-primary-custom">Get Quote</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1566228015668-4c45dbc4e2f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
+                    <div class="carousel-content">
+                        <div class="container">
+                            <h1 class="hero-title">Timely & Dedicated Service</h1>
+                            <p class="hero-subtitle">Committed to Excellence in Quality Control & Analysis</p>
+                            <a href="#about" class="btn btn-primary-custom">About Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">About Q.C.I</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h3 class="mb-4" style="color: var(--primary-blue);">Leading Quality Analysis & Inspection Company</h3>
+                    <p class="lead">Quality & Container Inspection LTD (Q.C.I) is a premier company offering comprehensive third-party services in quality analysis and inspection across multiple industries.</p>
+                    <p>We specialize in quality analysis for agricultural produces including coffee, cocoa, maize, rice, sorghum, and beans. Our expertise extends to sourcing both green specialty and commercial coffee in Uganda, providing thorough container inspection services, conducting stock counts/audits and verifications, and offering professional fumigation services.</p>
+                    <p>Q.C.I is dedicated to timely delivery and maintains the highest standards of professionalism in all our services, ensuring our clients receive accurate, reliable, and comprehensive inspection and analysis solutions.</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Quality Inspection" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <div class="stat-label">Satisfied Clients</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-item">
+                        <span class="stat-number">10+</span>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <div class="stat-label">Service Available</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon text-center">
+                            <i class="fas fa-ship"></i>
+                        </div>
+                        <h4 class="text-center mb-3">Marine Surveying</h4>
+                        <p>Comprehensive marine surveys and vessel inspections to ensure compliance with international maritime standards and safety regulations.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon text-center">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <h4 class="text-center mb-3">Container Inspection</h4>
+                        <p>Professional container inspection services ensuring cargo integrity, safety standards, and quality control throughout the shipping process.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon text-center">
+                            <i class="fas fa-warehouse"></i>
+                        </div>
+                        <h4 class="text-center mb-3">Stock Management</h4>
+                        <p>Accurate stock counts, audits, and inventory verifications to maintain optimal stock levels and ensure accurate record keeping.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon text-center">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <h4 class="text-center mb-3">Audits & Inspections</h4>
+                        <p>Thorough audits and inspections to ensure compliance with industry standards, regulations, and quality control requirements.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon text-center">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <h4 class="text-center mb-3">Sampling & Analysis</h4>
+                        <p>Professional sampling and laboratory analysis services for coffee, cocoa, maize, rice, sorghum, beans, and other agricultural commodities.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon text-center">
+                            <i class="fas fa-spray-can"></i>
+                        </div>
+                        <h4 class="text-center mb-3">Fumigation & Pest Control</h4>
+                        <p>Expert fumigation services and pest control solutions to protect your commodities and maintain quality standards during storage and transport.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Our Team</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>John Doe</h4>
+                        <p class="text-muted">Chief Executive Officer</p>
+                        <p>Leading Q.C.I with over 15 years of experience in quality control and inspection services.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Jane Smith</h4>
+                        <p class="text-muted">Head of Quality Assurance</p>
+                        <p>Expert in agricultural commodity analysis with extensive knowledge in coffee and cocoa quality control.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Michael Johnson</h4>
+                        <p class="text-muted">Marine Survey Specialist</p>
+                        <p>Certified marine surveyor with comprehensive experience in vessel inspections and maritime compliance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="contact-info">
+                        <h4 class="mb-4">Get in Touch</h4>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt contact-icon"></i>
+                            <div>
+                                <strong>Address:</strong><br>
+                                Kampala, Uganda
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone contact-icon"></i>
+                            <div>
+                                <strong>Phone:</strong><br>
+                                +256 700 000 000
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <div>
+                                <strong>Email:</strong><br>
+                                info@qci-uganda.com
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock contact-icon"></i>
+                            <div>
+                                <strong>Business Hours:</strong><br>
+                                Mon - Fri: 8:00 AM - 6:00 PM<br>
+                                Sat: 9:00 AM - 2:00 PM
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <form class="contact-info">
+                        <h4 class="mb-4">Send us a Message</h4>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Subject" required>
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary-custom">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Policies Section -->
+    <section id="policies" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Our Policies</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Quality Policy</h4>
+                    <p>We are committed to providing the highest quality inspection and analysis services that meet or exceed our clients' expectations and comply with relevant international standards.</p>
+                </div>
+                <div class="col-md-6">
+                    <h4>Environmental Policy</h4>
+                    <p>Q.C.I is dedicated to environmental protection and sustainable practices in all our operations, ensuring minimal environmental impact.</p>
+                </div>
+                <div class="col-md-6">
+                    <h4>Safety Policy</h4>
+                    <p>The safety of our employees, clients, and the public is our top priority. We maintain strict safety protocols in all our operations.</p>
+                </div>
+                <div class="col-md-6">
+                    <h4>Privacy Policy</h4>
+                    <p>We respect and protect the privacy and confidentiality of our clients' information and data in accordance with applicable privacy laws.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Careers Section -->
+    <section id="careers" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Careers</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <p class="lead">Join our team of dedicated professionals and contribute to excellence in quality inspection and analysis services.</p>
+                    <p>We offer competitive compensation, professional development opportunities, and a collaborative work environment. Check back regularly for current job openings.</p>
+                    <a href="#contact" class="btn btn-primary-custom">Send Your CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Reports Section -->
+    <section id="reports" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Research Reports</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <p class="lead">Access our comprehensive research reports on agricultural commodity markets, quality trends, and industry analysis.</p>
+                    <p>Our research team regularly publishes insights on coffee, cocoa, and other agricultural commodities to help our clients make informed decisions.</p>
+                    <a href="#contact" class="btn btn-primary-custom">Request Reports</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terms Section -->
+    <section id="terms" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Terms & Conditions</h2>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h4>Service Terms</h4>
+                    <p>All services are provided according to agreed specifications and timelines. Clients are responsible for providing accurate information and access required for service delivery.</p>
+                    
+                    <h4>Payment Terms</h4>
+                    <p>Payment terms are specified in individual service agreements. Standard terms require payment within 30 days of invoice date unless otherwise agreed.</p>
+                    
+                    <h4>Liability</h4>
+                    <p>Q.C.I maintains professional liability insurance and adheres to industry standards. Our liability is limited to the value of services provided.</p>
+                    
+                    <h4>Confidentiality</h4>
+                    <p>All client information and results are treated with strict confidentiality and are not disclosed to third parties without written consent.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h5>Quality & Container Inspection LTD</h5>
+                    <p>Professional third-party quality analysis and inspection services for agricultural commodities and maritime operations.</p>
+                </div>
+                <div class="col-lg-2">
+                    <h6>Quick Links</h6>
+                    <div class="footer-links">
+                        <a href="#home" class="d-block">Home</a>
+                        <a href="#about" class="d-block">About</a>
+                        <a href="#services" class="d-block">Services</a>
+                        <a href="#contact" class="d-block">Contact</a>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <h6>Services</h6>
+                    <div class="footer-links">
+                        <a href="#services" class="d-block">Quality Analysis</a>
+                        <a href="#services" class="d-block">Container Inspection</a>
+                        <a href="#services" class="d-block">Stock Management</a>
+                        <a href="#services" class="d-block">Fumigation Services</a>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <h6>Contact Info</h6>
+                    <p><i class="fas fa-envelope me-2"></i>info@qci-uganda.com</p>
+                    <p><i class="fas fa-phone me-2"></i>+256 700 000 000</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>Kampala, Uganda</p>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 Quality & Container Inspection LTD. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="social-links">
+                        <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(0, 102, 204, 0.95)';
+            } else {
+                navbar.style.background = 'var(--primary-blue)';
+            }
+        });
+
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.service-card, .team-member, .stat-item');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Initialize animations
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Set initial state for animated elements
+        document.querySelectorAll('.service-card, .team-member').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+
+        // Counter animation for stats
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+                const target = parseInt(counter.textContent.replace('+', ''));
+                if (isNaN(target)) return;
+                
+                let count = 0;
+                const increment = target / 100;
+                const timer = setInterval(() => {
+                    count += increment;
+                    if (count >= target) {
+                        counter.textContent = target + '+';
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = Math.floor(count) + '+';
+                    }
+                }, 20);
+            });
+        }
+
+        // Trigger counter animation when stats section is visible
+        const statsSection = document.querySelector('.stats-section');
+        let statsAnimated = false;
+
+        function checkStatsVisibility() {
+            const rect = statsSection.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0 && !statsAnimated) {
+                animateCounters();
+                statsAnimated = true;
+            }
+        }
+
+        window.addEventListener('scroll', checkStatsVisibility);
+
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Auto-close mobile menu when clicking on a link
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse.classList.contains('show')) {
+                    bootstrap.Collapse.getInstance(navbarCollapse).hide();
+                }
+            });
+        });
+
+        // Initialize carousel with custom settings
+        const carousel = new bootstrap.Carousel(document.querySelector('#heroCarousel'), {
+            interval: 5000,
+            wrap: true,
+            touch: true
+        });
+
+        // Pause carousel on hover
+        const carouselElement = document.querySelector('#heroCarousel');
+        carouselElement.addEventListener('mouseenter', () => {
+            carousel.pause();
+        });
+        carouselElement.addEventListener('mouseleave', () => {
+            carousel.cycle();
+        });
+
+        // Active navigation highlight
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '1';
+            document.body.style.transition = 'opacity 0.5s ease-in-out';
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial body opacity
+            document.body.style.opacity = '0';
+            
+            // Trigger initial animations
+            setTimeout(() => {
+                animateOnScroll();
+            }, 500);
+        });
+    </script>
+
+    <style>
+        /* Additional animations and effects */
+        .social-links a {
+            color: #ccc;
+            font-size: 1.2rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .navbar-nav .nav-link.active {
+            color: var(--accent-color) !important;
+        }
+
+        /* Loading state */
+        body {
+            opacity: 0;
+        }
+
+        /* Enhanced hover effects */
+        .btn-primary-custom {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary-custom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary-custom:hover::before {
+            left: 100%;
+        }
+
+        /* Improved carousel transitions */
+        .carousel-item {
+            transition: transform 0.8s ease-in-out;
+        }
+
+        /* Enhanced service cards */
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-color);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card {
+            position: relative;
+        }
+
+        /* Responsive improvements */
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .service-card {
+                margin-bottom: 1rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</body>
+</html>
